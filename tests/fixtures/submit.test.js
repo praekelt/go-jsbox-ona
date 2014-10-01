@@ -28,18 +28,27 @@ describe("fixtures.submit", function() {
         it("should use a default url", function() {
             var fixtures = new OnaFixtures({url: 'foo.io'});
             fixtures.submit.add({request: {}});
-            assert.equal(
-                fixtures.store[0].request.url,
-                'foo.io/submission');
+            assert.equal(fixtures.store[0].request.url, 'foo.io/submission');
         });
 
         it("should allow submission data to be given directly", function() {
             var fixtures = new OnaFixtures({url: 'foo.io'});
             fixtures.submit.add({submission: {foo: 'bar'}});
+            assert.deepEqual(fixtures.store[0].request.data, {foo: 'bar'});
+        });
+    });
 
-            assert.deepEqual(
-                fixtures.store[0].request.data,
-                {foo: 'bar'});
+    describe(".add_error", function() {
+        it("should add an error response", function() {
+            var fixtures = new OnaFixtures({url: 'foo.io'});
+            fixtures.submit.add_error({
+                code: 403,
+                reason: ':('
+            });
+
+            var response = fixtures.store[0].response ;
+            assert.equal(response.code, 403);
+            assert.deepEqual(response.data, {reason: ':('});
         });
     });
 });
