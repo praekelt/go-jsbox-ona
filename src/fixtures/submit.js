@@ -7,7 +7,7 @@ submit.add = function(fixtures, fixture) {
     fixture = fixture || {};
 
     fixture = _.defaults(fixture, {
-        request: {data: fixture.submission || {}},
+        request: {data: fixture.data || {}},
         response: {data: {reply: fixture.reply || 'Successful submission'}}
     });
 

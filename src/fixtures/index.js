@@ -9,10 +9,10 @@ var OnaFixtures = Extendable.extend(function(self, opts) {
 
     self.store = [];
     self.url = opts.url;
-    self.submit = _.mapValues(submit, bind);
+    self.submit = _.mapValues(submit, partial);
 
-    function bind(fn) {
-        return fn.bind(self, self);
+    function partial(fn) {
+        return _.partial(fn, self);
     }
 });
 
