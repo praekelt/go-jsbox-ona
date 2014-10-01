@@ -45,7 +45,7 @@ describe("fixtures.submit", function() {
 
     describe(".add_error", function() {
         it("should add an error response", function() {
-            var fixtures = new OnaFixtures({url: 'foo.io'});
+            var fixtures = new OnaFixtures();
             fixtures.submit.add_error({
                 code: 403,
                 reason: ':('
