@@ -9,7 +9,7 @@ describe("ona.submit", function() {
     var im;
 
     beforeEach(function() {
-        make_im()
+        return make_im()
             .then(function(new_im) {
                 im = new_im;
             });
