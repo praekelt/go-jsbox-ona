@@ -19,11 +19,12 @@ submit.add = function(fixtures, fixture) {
     });
 
     fixtures.store.push(fixture);
+    return fixture;
 };
 
 
 submit.add_error = function(fixtures, fixture) {
-    submit.add(fixtures, _.extend(fixture,  {
+    return submit.add(fixtures, _.extend(fixture,  {
         response: {
             code: fixture.code,
             data: {reason: fixture.reason}
