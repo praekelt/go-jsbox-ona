@@ -33,7 +33,7 @@ describe("fixtures.submit", function() {
 
         it("should allow submission data to be given directly", function() {
             var fixtures = new OnaFixtures({url: 'foo.io'});
-            fixtures.submit.add({submission: {foo: 'bar'}});
+            fixtures.submit.add({data: {foo: 'bar'}});
             assert.deepEqual(fixtures.store[0].request.data, {foo: 'bar'});
         });
     });
