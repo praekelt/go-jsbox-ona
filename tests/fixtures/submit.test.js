@@ -36,6 +36,11 @@ describe("fixtures.submit", function() {
             fixtures.submit.add({data: {foo: 'bar'}});
             assert.deepEqual(fixtures.store[0].request.data, {foo: 'bar'});
         });
+
+        it("should return the fixture", function() {
+            var fixtures = new OnaFixtures();
+            assert.deepEqual([fixtures.submit.add()], fixtures.store);
+        });
     });
 
     describe(".add_error", function() {
@@ -49,6 +54,17 @@ describe("fixtures.submit", function() {
             var response = fixtures.store[0].response ;
             assert.equal(response.code, 403);
             assert.deepEqual(response.data, {reason: ':('});
+        });
+
+        it("should return the fixture", function() {
+            var fixtures = new OnaFixtures();
+
+            var fixture = fixtures.submit.add_error({
+                code: 403,
+                reason: ':('
+            });
+
+            assert.deepEqual([fixture], fixtures.store);
         });
     });
 });
