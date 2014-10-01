@@ -7,7 +7,10 @@ var JsonApi = vumigo.http.api.JsonApi;
 function submit(ona, data) {
     var http = new JsonApi(ona.im);
     var url = path.join(ona.url, 'submission');
-    return http.post(url, {data: parse(data)});
+    return http.post(url, {
+        data: parse(data),
+        auth: ona.auth
+    });
 }
 
 
