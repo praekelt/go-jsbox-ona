@@ -44,26 +44,23 @@ describe("fixtures.submit", function() {
     });
 
     describe(".add_error", function() {
-        it("should add an error response", function() {
-            var fixtures = new OnaFixtures({url: 'foo.io'});
-            fixtures.submit.add_error({
+        var fixture;
+        var fixtures;
+        beforeEach(function() {
+            fixtures = new OnaFixtures();
+            fixture = fixtures.submit.add_error({
                 code: 403,
                 reason: ':('
             });
+        });
 
+        it("should add an error response", function() {
             var response = fixtures.store[0].response ;
             assert.equal(response.code, 403);
             assert.deepEqual(response.data, {reason: ':('});
         });
 
         it("should return the fixture", function() {
-            var fixtures = new OnaFixtures();
-
-            var fixture = fixtures.submit.add_error({
-                code: 403,
-                reason: ':('
-            });
-
             assert.deepEqual([fixture], fixtures.store);
         });
     });
