@@ -3,9 +3,12 @@ var assert = require('assert');
 var vumigo = require('vumigo_v02');
 var basic_auth = vumigo.utils.basic_auth;
 var make_im = vumigo.test_utils.make_im;
+var fail = vumigo.test_utils.fail;
 
-var Ona = require('../src').Ona;
-var OnaFixtures = require('../src').OnaFixtures;
+var ona = require('../src');
+var Ona = ona.Ona;
+var OnaFixtures = ona.OnaFixtures;
+var OnaValidationError = ona.OnaValidationError;
 
 describe("ona.submit", function() {
     var im;
@@ -29,11 +32,17 @@ describe("ona.submit", function() {
 
     it("should make a submission", function() {
         add_fixture({
-            data: {foo: 'bar'},
+            data: {
+                id: 1,
+                submission: {foo: 'bar'}
+            },
             reply: ':)'
         });
 
-        return ona.submit({foo: 'bar'})
+        return ona.submit({
+                id: 1,
+                submission: {foo: 'bar'}
+            })
             .then(function(resp) {
                 assert.equal(resp.data.reply, ':)');
             });
@@ -47,14 +56,42 @@ describe("ona.submit", function() {
             }
         });
 
-        add_fixture({data: {foo: 'bar'}});
+        add_fixture({
+            data: {
+                id: 1,
+                submission: {foo: 'bar'}
+            }
+        });
 
-        return ona.submit({foo: 'bar'})
+        return ona.submit({
+                id: 1,
+                submission: {foo: 'bar'}
+            })
             .then(function() {
                 var req = api.http.requests[0];
                 assert.deepEqual(
                     req.headers.Authorization,
                     [basic_auth('root', 'toor')]);
+            });
+    });
+
+    it("should throw an error if no 'id' field is given", function() {
+        return ona.submit({submission: {foo: 'bar'}})
+            .then(fail, function(e) {
+                assert(e instanceof OnaValidationError);
+                assert.equal(
+                    e.message,
+                    "Submissions need an 'id' field");
+            });
+    });
+
+    it("should throw an error if no 'submission' field is given", function() {
+        return ona.submit({id: 1})
+            .then(fail, function(e) {
+                assert(e instanceof OnaValidationError);
+                assert.equal(
+                    e.message,
+                    "Submissions need a 'submission' field");
             });
     });
 });
