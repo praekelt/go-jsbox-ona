@@ -4,8 +4,12 @@ var submit = require('./submit');
 var Eventable = vumigo.events.Eventable;
 
 
-var Ona = Eventable.extend(function(self, im) {
-    self.submit = _.curry(submit, self);
+var Ona = Eventable.extend(function(self, im, opts) {
+    opts = _.defaults(opts || {}, {url: 'https://ona.io/api/v1/'});
+    self.im = im;
+    self.auth = opts.auth;
+    self.url = opts.url;
+    self.submit = _.partial(submit, self);
 });
 
 
