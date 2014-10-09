@@ -26,9 +26,10 @@ describe("fixtures.submit", function() {
         });
 
         it("should use a default url", function() {
-            var fixtures = new OnaFixtures({url: 'foo.io'});
+            var fixtures = new OnaFixtures({url: 'http://foo.io'});
             fixtures.submit.add({request: {}});
-            assert.equal(fixtures.store[0].request.url, 'foo.io/submission');
+            assert.equal(
+                fixtures.store[0].request.url, 'http://foo.io/submission');
         });
 
         it("should allow submission data to be given directly", function() {
@@ -40,6 +41,14 @@ describe("fixtures.submit", function() {
         it("should return the fixture", function() {
             var fixtures = new OnaFixtures();
             assert.deepEqual([fixtures.submit.add()], fixtures.store);
+        });
+
+        it("should join urls correctly", function() {
+            var fixtures = new OnaFixtures();
+            fixtures.submit.add();
+            assert.equal(
+                fixtures.store[0].request.url,
+                "https://ona.io/api/v1/submission");
         });
     });
 
