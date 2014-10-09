@@ -1,5 +1,5 @@
 var Q = require('q');
-var path = require('path');
+var URL = require('url');
 
 var vumigo = require('vumigo_v02');
 var JsonApi = vumigo.http.api.JsonApi;
@@ -10,7 +10,7 @@ var OnaValidationError = errors.OnaValidationError;
 
 function submit(ona, data) {
     var http = new JsonApi(ona.im);
-    var url = path.join(ona.url, 'submission');
+    var url = URL.resolve(ona.url, 'submission');
 
     return Q(parse)
         .fcall(data)

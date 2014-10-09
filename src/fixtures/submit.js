@@ -1,5 +1,5 @@
 var _ = require('lodash');
-var path = require('path');
+var URL = require('url');
 var submit = exports;
 
 
@@ -15,7 +15,7 @@ submit.add = function(fixtures, fixture) {
 
     _.defaults(fixture.request, {
         method: 'POST',
-        url: path.join(fixtures.url, 'submission'),
+        url: URL.resolve(fixtures.url, 'submission'),
     });
 
     fixtures.store.push(fixture);
