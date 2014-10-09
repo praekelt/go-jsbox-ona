@@ -2,10 +2,6 @@ var assert = require('assert');
 
 var OnaFixtures = require('../../src').OnaFixtures;
 
-describe("new OnaFixtures", function() {
-
-});
-
 describe("fixtures.submit", function() {
     describe(".add", function() {
         it("should provide a default response", function() {
