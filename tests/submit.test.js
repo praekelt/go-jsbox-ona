@@ -94,4 +94,22 @@ describe("ona.submit", function() {
                     "Submissions need a 'submission' field");
             });
     });
+
+    it("should join urls correctly", function() {
+        add_fixture({
+            data: {
+                id: 1,
+                submission: {foo: 'bar'}
+            }
+        });
+
+        return ona.submit({
+                id: 1,
+                submission: {foo: 'bar'}
+            })
+            .then(function() {
+                    var req = api.http.requests[0];
+                    assert.equal(req.url, "https://ona.io/api/v1/submission");
+                });
+            });
 });

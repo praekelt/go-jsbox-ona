@@ -1,8 +1,8 @@
 {
   "name": "go-jsbox-ona",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A vumi jsbox helper library for interacting with Ona",
-  "main": "lib/index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "grunt test"
   },
