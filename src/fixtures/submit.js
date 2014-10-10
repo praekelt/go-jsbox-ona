@@ -27,7 +27,7 @@ submit.add_error = function(fixtures, fixture) {
     return submit.add(fixtures, _.extend(fixture,  {
         response: {
             code: fixture.code,
-            data: {reason: fixture.reason}
+            data: {error: fixture.error}
         }
     }));
 };

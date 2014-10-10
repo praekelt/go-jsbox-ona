@@ -59,14 +59,14 @@ describe("fixtures.submit", function() {
             fixtures = new OnaFixtures();
             fixture = fixtures.submit.add_error({
                 code: 403,
-                reason: ':('
+                error: ':('
             });
         });
 
         it("should add an error response", function() {
             var response = fixtures.store[0].response ;
             assert.equal(response.code, 403);
-            assert.deepEqual(response.data, {reason: ':('});
+            assert.deepEqual(response.data, {error: ':('});
         });
 
         it("should return the fixture", function() {
