@@ -7,7 +7,7 @@ var OnaValidationError = BaseError.extend(function(self, message) {
     Thrown for invalid api requests.
 
     :param String message:
-        The error for the validation error.
+        The reason for the validation error.
     */
     self.message = message;
 });
