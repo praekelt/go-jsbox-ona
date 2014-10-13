@@ -10,7 +10,7 @@ var OnaValidationError = errors.OnaValidationError;
 
 function submit(ona, data) {
     var http = new JsonApi(ona.im);
-    var url = URL.resolve(ona.url, 'submission');
+    var url = URL.resolve(ona.url, 'submissions');
 
     return Q(parse)
         .fcall(data)

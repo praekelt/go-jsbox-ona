@@ -15,7 +15,7 @@ submit.add = function(fixtures, fixture) {
 
     _.defaults(fixture.request, {
         method: 'POST',
-        url: URL.resolve(fixtures.url, 'submission'),
+        url: URL.resolve(fixtures.url, 'submissions'),
     });
 
     fixtures.store.push(fixture);

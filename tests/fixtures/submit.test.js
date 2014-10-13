@@ -29,7 +29,7 @@ describe("fixtures.submit", function() {
             var fixtures = new OnaFixtures({url: 'http://foo.io'});
             fixtures.submit.add({request: {}});
             assert.equal(
-                fixtures.store[0].request.url, 'http://foo.io/submission');
+                fixtures.store[0].request.url, 'http://foo.io/submissions');
         });
 
         it("should allow submission data to be given directly", function() {
@@ -48,7 +48,7 @@ describe("fixtures.submit", function() {
             fixtures.submit.add();
             assert.equal(
                 fixtures.store[0].request.url,
-                "https://ona.io/api/v1/submission");
+                "https://ona.io/api/v1/submissions");
         });
     });
 
