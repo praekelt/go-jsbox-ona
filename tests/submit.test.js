@@ -109,7 +109,7 @@ describe("ona.submit", function() {
             })
             .then(function() {
                     var req = api.http.requests[0];
-                    assert.equal(req.url, "https://ona.io/api/v1/submission");
+                    assert.equal(req.url, "https://ona.io/api/v1/submissions");
                 });
             });
 });
